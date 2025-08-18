@@ -5,15 +5,25 @@ function Home() {
     const [users, setUsers] = useState([])
 
    async function main() {
-           const { data } = await axios.get ("http://jsonplaceholder.typicode.com/users")
+           const { data } = await axios.get ("http://jsonplaceholder.typicode.com/users");
            setUsers(data)
         }
 
     useEffect(() => {
-        
-        main()
+        setTimeout(() => {
+            fetchUsers();
+        }, 2000);
     }, [])
-    return <h1>{users[0]?.name}</h1>
+
+    return (
+        <div>
+            {users.length > 0
+           ? <h1>{users[0]?.name}</h1>
+           : <h1>Loading...</h1>
+            }
+    
+    </div>
+    );
 }
 
 export default Home
