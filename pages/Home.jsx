@@ -4,7 +4,7 @@ import axios from 'axios'
 function Home() {
     const [users, setUsers] = useState([])
 
-   async function main() {
+   async function fetchUsers() {
            const { data } = await axios.get ("http://jsonplaceholder.typicode.com/users");
            setUsers(data)
         }
@@ -12,17 +12,24 @@ function Home() {
     useEffect(() => {
         setTimeout(() => {
             fetchUsers();
-        }, 2000);
+        }, 500);
     }, [])
+
+    const pixels = "3px";
 
     return (
         <div>
-            {users.length > 0
-           ? <h1>{users[0]?.name}</h1>
-           : <h1>Loading...</h1>
-            }
-    
-    </div>
+            {users.map(() => {
+                return (
+        <div style={{border: `${pixels} solid black` }}>
+            <div>{users[0]?.id}</div>
+            <div>{users[0]?.name}</div>
+            <div>{users[0]?.email}</div>
+            <div>{users[0]?.username}</div>
+        </div>
+    );
+})}
+</div>
     );
 }
 
