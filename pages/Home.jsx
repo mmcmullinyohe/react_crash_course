@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import User from "../components/User.jsx"
 
 function Home() {
     const [users, setUsers] = useState([])
@@ -16,21 +17,20 @@ function Home() {
     }, [])
 
     const pixels = "3px";
-
-    return (
+        return(
         <div>
-            {users.map(() => {
-                return (
-        <div style={{border: `${pixels} solid black` }}>
-            <div>{users[0]?.id}</div>
-            <div>{users[0]?.name}</div>
-            <div>{users[0]?.email}</div>
-            <div>{users[0]?.username}</div>
-        </div>
-    );
-})}
+            {users.map((user) => (
+                
+            <User 
+            key={user.id}
+            id={user.id}
+            name={user.name}
+            email={user.email}
+            username={user.username}
+        />
+    ))}
 </div>
     );
 }
 
-export default Home
+export default Home;
